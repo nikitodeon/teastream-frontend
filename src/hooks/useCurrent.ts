@@ -8,6 +8,7 @@ import {
 import { useAuth } from './useAuth'
 
 export function useCurrent() {
+	console.log('useCurrent was called')
 	const { isAuthenticated, exit } = useAuth()
 
 	const { data, loading, refetch, error } = useFindProfileQuery({
@@ -17,6 +18,8 @@ export function useCurrent() {
 
 	useEffect(() => {
 		if (error) {
+			console.log('Session error detected:', error)
+
 			if (isAuthenticated) {
 				clear()
 			}

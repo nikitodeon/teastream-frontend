@@ -43,11 +43,7 @@ export default function Home() {
 	console.log(user, isLoadingProfile)
 	return (
 		<div>
-			{isLoadingProfile ? (
-				'loading'
-			) : (
-				<pre>{JSON.stringify(user, null, 2)}</pre>
-			)}
+			{/* {isLoadingProfile ? 'loading' : JSON.stringify(user)} */}kkk
 		</div>
 	)
 }
