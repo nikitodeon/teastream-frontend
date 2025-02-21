@@ -8,19 +8,18 @@ import {
 } from '@/components/ui/common/Tabs'
 import { Heading } from '@/components/ui/elements/Heading'
 
-// import { ChangeEmailForm } from './account/ChangeEmailForm'
-// import { ChangePasswordForm } from './account/ChangePasswordForm'
-// import { DeactivateCard } from './account/DeactivateCard'
-// import { WrapperTotp } from './account/totp/WrapperTotp'
-// import { ChangeColorForm } from './appearance/ChangeColorForm'
-// import { ChangeLanguageForm } from './appearance/ChangeLanguageForm'
-// import { ChangeThemeForm } from './appearance/ChangeThemeForm'
-// import { ChangeNotificationsSettingsForm } from './notifications/ChangeNotificationsSettingsForm'
+import { ChangeEmailForm } from './account/ChangeEmailForm'
+import { ChangePasswordForm } from './account/ChangePasswordForm'
+import { DeactivateCard } from './account/DeactivateCard'
+import { WrapperTotp } from './account/totp/WrapperTotp'
+import { ChangeColorForm } from './appearance/ChangeColorForm'
+import { ChangeLanguageForm } from './appearance/ChangeLanguageForm'
+import { ChangeThemeForm } from './appearance/ChangeThemeForm'
+import { ChangeNotificationsSettingsForm } from './notifications/ChangeNotificationsSettingsForm'
 import { ChangeAvatarForm } from './profile/ChangeAvatarForm'
-
-// import { ChangeInfoForm } from './profile/ChangeInfoForm'
-// import { SocialLinksForm } from './profile/social-links-form/SocialLinksForm'
-// import { SessionsList } from './sessions/SessionsList'
+import { ChangeInfoForm } from './profile/ChangeInfoForm'
+import { SocialLinksForm } from './profile/social-links-form/SocialLinksForm'
+import { SessionsList } from './sessions/SessionsList'
 
 export function UserSettings() {
 	const t = useTranslations('dashboard.settings')
@@ -57,8 +56,8 @@ export function UserSettings() {
 							description={t('profile.header.description')}
 						/>
 						<ChangeAvatarForm />
-						{/* <ChangeInfoForm /> */}
-						{/* <SocialLinksForm /> */}
+						<ChangeInfoForm />
+						<SocialLinksForm />
 					</div>
 				</TabsContent>
 				<TabsContent value='account'>
@@ -67,22 +66,22 @@ export function UserSettings() {
 							title={t('account.header.heading')}
 							description={t('account.header.description')}
 						/>
-						{/* <ChangeEmailForm /> */}
-						{/* <ChangePasswordForm /> */}
+						<ChangeEmailForm />
+						<ChangePasswordForm />
 						<Heading
 							title={t('account.header.securityHeading')}
 							description={t(
 								'account.header.securityDescription'
 							)}
 						/>
-						{/* <WrapperTotp /> */}
+						<WrapperTotp />
 						<Heading
 							title={t('account.header.deactivationHeading')}
 							description={t(
 								'account.header.deactivationDescription'
 							)}
 						/>
-						{/* <DeactivateCard /> */}
+						<DeactivateCard />
 					</div>
 				</TabsContent>
 				<TabsContent value='appearance'>
@@ -91,9 +90,9 @@ export function UserSettings() {
 							title={t('appearance.header.heading')}
 							description={t('appearance.header.description')}
 						/>
-						{/* <ChangeThemeForm /> */}
-						{/* <ChangeLanguageForm /> */}
-						{/* <ChangeColorForm /> */}
+						<ChangeThemeForm />
+						<ChangeLanguageForm />
+						<ChangeColorForm />
 					</div>
 				</TabsContent>
 				<TabsContent value='notifications'>
@@ -102,7 +101,7 @@ export function UserSettings() {
 							title={t('notifications.header.heading')}
 							description={t('notifications.header.description')}
 						/>
-						{/* <ChangeNotificationsSettingsForm /> */}
+						<ChangeNotificationsSettingsForm />
 					</div>
 				</TabsContent>
 				<TabsContent value='sessions'>
@@ -111,7 +110,7 @@ export function UserSettings() {
 							title={t('sessions.header.heading')}
 							description={t('sessions.header.description')}
 						/>
-						{/* <SessionsList /> */}
+						<SessionsList />
 					</div>
 				</TabsContent>
 			</Tabs>

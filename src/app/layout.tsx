@@ -4,7 +4,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { getLocale, getMessages } from 'next-intl/server'
 import { Inter } from 'next/font/google'
 
-// import { ColorSwitcher } from '@/components/ui/elements/ColorSwitcher'
+import { ColorSwitcher } from '@/components/ui/elements/ColorSwitcher'
 
 // import {
 // 	SITE_DESCRIPTION,
@@ -19,7 +19,7 @@ import { ToastProvider } from '@/providers/ToastProvider'
 
 import '@/styles/globals.css'
 
-// import '@/styles/themes.css'
+import '@/styles/themes.css'
 
 // const inter = Inter({ subsets: ['latin'] })
 export const metadata: Metadata = {
@@ -93,7 +93,7 @@ export default async function RootLayout({
 	return (
 		<html lang={locale} suppressHydrationWarning>
 			<body className={GeistSans.variable}>
-				{/* <ColorSwitcher /> */}
+				<ColorSwitcher />
 				<ApolloClientProvider>
 					<NextIntlClientProvider messages={messages}>
 						{' '}
