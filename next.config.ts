@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
 		remotePatterns: [
 			{
 				protocol: 'https',
-				hostname: '88d6197c-0d1c-43b9-a1b3-806e8d04acc1.selstorage.ru'
+				hostname: '29a14ff2-9778-4447-a8b5-e00d3d0247ef.selstorage.ru'
 			}
 		]
 	}

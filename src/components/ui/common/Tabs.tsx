@@ -1,124 +1,59 @@
+'use client'
+
+import * as TabsPrimitive from '@radix-ui/react-tabs'
 import {
-	type HTMLAttributes,
-	type TdHTMLAttributes,
-	type ThHTMLAttributes,
+	type ComponentPropsWithoutRef,
+	type ComponentRef,
 	forwardRef
 } from 'react'
 
 import { cn } from '@/utils/tw-merge'
 
-const Table = forwardRef<HTMLTableElement, HTMLAttributes<HTMLTableElement>>(
-	({ className, ...props }, ref) => (
-		<div className='relative w-full overflow-auto'>
-			<table
-				ref={ref}
-				className={cn('w-full caption-bottom text-sm', className)}
-				{...props}
-			/>
-		</div>
-	)
-)
-Table.displayName = 'Table'
+const Tabs = TabsPrimitive.Root
 
-const TableHeader = forwardRef<
-	HTMLTableSectionElement,
-	HTMLAttributes<HTMLTableSectionElement>
+const TabsList = forwardRef<
+	ComponentRef<typeof TabsPrimitive.List>,
+	ComponentPropsWithoutRef<typeof TabsPrimitive.List>
 >(({ className, ...props }, ref) => (
-	<thead ref={ref} className={cn('[&_tr]:border-b', className)} {...props} />
-))
-TableHeader.displayName = 'TableHeader'
-
-const TableBody = forwardRef<
-	HTMLTableSectionElement,
-	HTMLAttributes<HTMLTableSectionElement>
->(({ className, ...props }, ref) => (
-	<tbody
-		ref={ref}
-		className={cn('[&_tr:last-child]:border-0', className)}
-		{...props}
-	/>
-))
-TableBody.displayName = 'TableBody'
-
-const TableFooter = forwardRef<
-	HTMLTableSectionElement,
-	HTMLAttributes<HTMLTableSectionElement>
->(({ className, ...props }, ref) => (
-	<tfoot
+	<TabsPrimitive.List
 		ref={ref}
 		className={cn(
-			'bg-muted/50 border-t font-medium [&>tr]:last:border-b-0',
+			'inline-flex h-10 items-center justify-center rounded-md bg-card p-1 text-muted-foreground',
 			className
 		)}
 		{...props}
 	/>
 ))
-TableFooter.displayName = 'TableFooter'
+TabsList.displayName = TabsPrimitive.List.displayName
 
-const TableRow = forwardRef<
-	HTMLTableRowElement,
-	HTMLAttributes<HTMLTableRowElement>
+const TabsTrigger = forwardRef<
+	ComponentRef<typeof TabsPrimitive.Trigger>,
+	ComponentPropsWithoutRef<typeof TabsPrimitive.Trigger>
 >(({ className, ...props }, ref) => (
-	<tr
+	<TabsPrimitive.Trigger
 		ref={ref}
 		className={cn(
-			'hover:bg-card data-[state=selected]:bg-muted border-b transition-colors',
+			'data-data-[state=active]:shadow-sm inline-flex items-center justify-center whitespace-nowrap rounded-sm px-3 py-1.5 text-sm font-medium text-foreground ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-accent',
 			className
 		)}
 		{...props}
 	/>
 ))
-TableRow.displayName = 'TableRow'
+TabsTrigger.displayName = TabsPrimitive.Trigger.displayName
 
-const TableHead = forwardRef<
-	HTMLTableCellElement,
-	ThHTMLAttributes<HTMLTableCellElement>
+const TabsContent = forwardRef<
+	ComponentRef<typeof TabsPrimitive.Content>,
+	ComponentPropsWithoutRef<typeof TabsPrimitive.Content>
 >(({ className, ...props }, ref) => (
-	<th
+	<TabsPrimitive.Content
 		ref={ref}
 		className={cn(
-			'text-muted-foreground h-12 px-4 text-left align-middle font-medium [&:has([role=checkbox])]:pr-0',
+			'mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
 			className
 		)}
 		{...props}
 	/>
 ))
-TableHead.displayName = 'TableHead'
+TabsContent.displayName = TabsPrimitive.Content.displayName
 
-const TableCell = forwardRef<
-	HTMLTableCellElement,
-	TdHTMLAttributes<HTMLTableCellElement>
->(({ className, ...props }, ref) => (
-	<td
-		ref={ref}
-		className={cn(
-			'px-4 py-2 align-middle [&:has([role=checkbox])]:pr-0',
-			className
-		)}
-		{...props}
-	/>
-))
-TableCell.displayName = 'TableCell'
-
-const TableCaption = forwardRef<
-	HTMLTableCaptionElement,
-	HTMLAttributes<HTMLTableCaptionElement>
->(({ className, ...props }, ref) => (
-	<caption
-		ref={ref}
-		className={cn('text-muted-foreground mt-4 text-sm', className)}
-		{...props}
-	/>
-))
-TableCaption.displayName = 'TableCaption'
-
-export {
-	Table,
-	TableBody,
-	TableCaption,
-	TableCell,
-	TableFooter,
-	TableHead,
-	TableHeader,
-	TableRow
-}
+export { Tabs, TabsContent, TabsList, TabsTrigger }
