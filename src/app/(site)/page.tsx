@@ -1,53 +1,84 @@
-'use client'
+import { getTranslations } from 'next-intl/server'
 
-// support - bestream-fronted - Visual Studio Code
-// user class
-import { useTranslations } from 'next-intl'
+import { CategoriesList } from '@/components/features/category/list/CategoriesList'
+import { StreamsList } from '@/components/features/stream/list/StreamsList'
 
-import { useCurrent } from '@/hooks/useCurrent'
+import {
+	FindRandomCategoriesDocument,
+	type FindRandomCategoriesQuery,
+	FindRandomStreamsDocument,
+	type FindRandomStreamsQuery
+} from '@/graphql/generated/output'
 
-// support - bestream-fronted - Visual Studio Code
-// user class
+import { SERVER_URL } from '@/libs/constants/url.constants'
 
-// support - bestream-fronted - Visual Studio Code
-// user class
+async function findRandomStreams() {
+	try {
+		const query = FindRandomStreamsDocument.loc?.source.body
 
-// support - bestream-fronted - Visual Studio Code
-// user class
+		const response = await fetch(SERVER_URL, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ query }),
+			next: {
+				revalidate: 30
+			}
+		})
 
-// support - bestream-fronted - Visual Studio Code
-// user class
+		const data = await response.json()
 
-// support - bestream-fronted - Visual Studio Code
-// user class
+		return {
+			streams: data.data
+				.findRandomStreams as FindRandomStreamsQuery['findRandomStreams']
+		}
+	} catch (error) {
+		console.log(error)
+		throw new Error('Ошибка при получении стримов')
+	}
+}
 
-// support - bestream-fronted - Visual Studio Code
-// user class
+async function findRandomCategories() {
+	try {
+		const query = FindRandomCategoriesDocument.loc?.source.body
 
-// support - bestream-fronted - Visual Studio Code
-// user class
+		const response = await fetch(SERVER_URL, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({ query }),
+			next: {
+				revalidate: 30
+			}
+		})
 
-// support - bestream-fronted - Visual Studio Code
-// user class
+		const data = await response.json()
 
-// support - bestream-fronted - Visual Studio Code
-// user class
+		return {
+			categories: data.data
+				.findRandomCategories as FindRandomCategoriesQuery['findRandomCategories']
+		}
+	} catch (error) {
+		console.log(error)
+		throw new Error('Ошибка при получении категорий')
+	}
+}
 
-// support - bestream-fronted - Visual Studio Code
-// user class
+export default async function HomePage() {
+	const t = await getTranslations('home')
 
-export default function Home() {
-	console.log('Home component rendered ') // <-- Если это не появится в консоли, компонент не загружается
+	const { streams } = await findRandomStreams()
+	const { categories } = await findRandomCategories()
 
-	const { user, isLoadingProfile } = useCurrent()
-	console.log(user, isLoadingProfile)
 	return (
-		<div>
-			{isLoadingProfile ? (
-				'loading'
-			) : (
-				<pre>{JSON.stringify(user, null, 2)}</pre>
-			)}
+		<div className='space-y-10'>
+			<StreamsList heading={t('streamsHeading')} streams={streams} />
+			<CategoriesList
+				heading={t('categoriesHeading')}
+				categories={categories}
+			/>
 		</div>
 	)
 }
